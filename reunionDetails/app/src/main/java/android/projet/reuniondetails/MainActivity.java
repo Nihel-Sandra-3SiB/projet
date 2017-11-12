@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                         int idu = finalObject.getInt("id");
                         String nom = finalObject.getString("name");
                         String mdp = finalObject.getString("pass");
-                        finalBufferData.append(idu+","+nom+","+mdp+"*");
+                        finalBufferData.append(idu+"\t\t"+nom+"\t\t"+mdp+"\n");
                         //helper.insertUser(idu,nom,mdp);
 
                     }
@@ -149,21 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
             super.onPostExecute(s);
 
-            StringTokenizer si = new StringTokenizer(s,"*");
-            String sii="";
-            while(si.hasMoreTokens()) {
-                int i=0;
-                sii = si.nextToken();
-                ArrayList tab = new ArrayList ();
-                StringTokenizer siii = new StringTokenizer(sii, "+");
-                while(siii.hasMoreTokens())
-                {
-
-                    tab.add(i,siii.nextToken()) ;
-                    i++;
-                }
-                helper.insertUser((int)tab.get(0),(String)tab.get(1),(String)tab.get(2));
-            }
+            helper.setUser(s);
         }
     }
 }

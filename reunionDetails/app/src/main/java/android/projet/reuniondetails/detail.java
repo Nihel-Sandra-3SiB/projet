@@ -1,4 +1,7 @@
 package android.projet.reuniondetails;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,15 +27,36 @@ import static android.support.v7.appcompat.R.styleable.View;
  */
 
 public class detail extends AppCompatActivity {
-
+    DataBaseHelp help = new DataBaseHelp(this);
     private TextView txt;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         txt = (TextView) findViewById(R.id.text2);
+        boolean test = checkNetworkConnection();
 
-           new SendPostRequest2().execute("http://192.168.8.100:80/test/detail.php");
+        if(test)
+        {
+            //récupération des données depuis le serveur web s'il y a connexion
 
+            new SendPostRequest2().execute("http://192.168.8.100:80/test/detail.php");
+
+        }
+        else
+        {
+            //récupération des données depuis sqlite s'il y a pas connexion
+            String det="";
+            det=help.getDetail();
+            txt.setText(det);
+
+        }
+
+    }
+    public boolean checkNetworkConnection()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        return(networkInfo.isConnectedOrConnecting());
     }
 
 
@@ -72,7 +96,7 @@ public class detail extends AppCompatActivity {
                     int idu = finalObject.getInt("id");
                     String nom = finalObject.getString("date");
                     String mdp = finalObject.getString("salle");
-                    finalBufferData.append(idu+" , "+nom+" , "+mdp);
+                    finalBufferData.append(idu+"\t\t"+nom+"\t\t"+mdp+"\n");
 
 
                 }
@@ -98,6 +122,7 @@ public class detail extends AppCompatActivity {
 
             super.onPostExecute(s);
             txt.setText(s);
+            help.setDetail(s);
         }
     }
 

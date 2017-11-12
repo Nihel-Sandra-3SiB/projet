@@ -4,14 +4,15 @@
     tools:context="android.projet.reuniondetails.detail"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/new_login_gradients">>
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#f00"
+        android:textColor="#fff"
         android:padding="16dp"
         android:layout_marginBottom="16dp"/>
 

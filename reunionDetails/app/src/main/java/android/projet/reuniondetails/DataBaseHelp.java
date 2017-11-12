@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import static android.R.attr.name;
 
@@ -51,6 +53,25 @@ public class DataBaseHelp extends SQLiteOpenHelper {
         this.onCreate(db);
 
     }
+    public void setDetail(String s) {
+        StringTokenizer si = new StringTokenizer(s,"\n");
+        String sii="";
+        while(si.hasMoreTokens()) {
+            int i=0;
+            sii = si.nextToken();
+            ArrayList tab = new ArrayList ();
+            StringTokenizer siii = new StringTokenizer(sii, "\t\t");
+            while(siii.hasMoreTokens())
+            {
+
+                tab.add(i,siii.nextToken()) ;
+                i++;
+            }
+            this.insertDetail((int)tab.get(0),(String)tab.get(1),(String)tab.get(2));
+        }
+
+    }
+
 
 
 
@@ -64,6 +85,28 @@ public class DataBaseHelp extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
     }
 
+    public String getDetail(){
+
+        StringBuffer buffer = new StringBuffer();
+        db=this.getReadableDatabase();
+        String query ="select date, salle from"+TABLE_NAME;
+        Cursor cursor = db.rawQuery(query,null);
+        String a, b;
+
+        if(cursor.moveToFirst())
+        {
+            do {
+                a=cursor.getString(0);
+                b=cursor.getString(1);
+                buffer.append(a);
+                buffer.append("\t\t");
+                buffer.append(b);
+            }
+            while(cursor.moveToNext());
+        }
+
+        return buffer.toString();
+    }
 
 
 
