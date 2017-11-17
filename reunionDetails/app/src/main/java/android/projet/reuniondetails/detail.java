@@ -1,5 +1,6 @@
 package android.projet.reuniondetails;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -27,7 +29,7 @@ import static android.support.v7.appcompat.R.styleable.View;
  */
 
 public class detail extends AppCompatActivity {
-    DataBaseHelp help = new DataBaseHelp(this);
+   // DataBaseHelp help = new DataBaseHelp(this);
     private TextView txt;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,18 +41,36 @@ public class detail extends AppCompatActivity {
         {
             //récupération des données depuis le serveur web s'il y a connexion
 
-            new SendPostRequest2().execute("http://192.168.8.100:80/test/detail.php");
+           // new detail.SendPostRequest().execute("http://192.168.8.100:80/test/detail.php");
+            txt.setText("vrai");
 
         }
         else
         {
             //récupération des données depuis sqlite s'il y a pas connexion
-            String det="";
-            det=help.getDetail();
-            txt.setText(det);
+            //String det="";
+            //det=help.getDetail();
+            //txt.setText(det);
+            txt.setText("faux");
 
         }
 
+    }
+
+    public void onButton3Click(View v) {
+        Intent i = new Intent(detail.this, MainActivity.class);
+
+        startActivity(i);
+    }
+    public void onButton1Click(View v) {
+        Intent i = new Intent(detail.this, local.class);
+
+        startActivity(i);
+    }
+    public void onButton2Click(View v) {
+        Intent i = new Intent(detail.this, externe.class);
+
+        startActivity(i);
     }
     public boolean checkNetworkConnection()
     {
@@ -61,7 +81,7 @@ public class detail extends AppCompatActivity {
 
 
 
-    public class SendPostRequest2 extends AsyncTask<String, String, String> {
+   /* public class SendPostRequest extends AsyncTask<String, String, String> {
 
 
         @Override
@@ -125,5 +145,5 @@ public class detail extends AppCompatActivity {
             help.setDetail(s);
         }
     }
-
+*/
 }

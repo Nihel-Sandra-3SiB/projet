@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_PASS = "pass";
     SQLiteDatabase db;
-    private static final String TABLE_CREATE = "create table users (id integer , " +
+    private static final String TABLE_CREATE = "create table users (id integer AUTO_INCREMENT PRIMARY KEY , " +
             "name text not null , pass text not null); ";
 
     public DatabaseHelper(Context context) {
@@ -40,8 +40,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.onCreate(db);
 
     }
+    public void insertUser(String nom, String mdp) {
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, nom);
+        values.put(COLUMN_PASS, mdp);
+        db.insert(TABLE_NAME, null, values);
+    }
 
-    public String searchPass(String uname) {
+   /* public String searchPass(String uname) {
         db = this.getReadableDatabase();
         String query = "select name, pass from" + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
@@ -81,14 +88,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertUser(int idu, String nom, String mdp) {
-        db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, idu);
-        values.put(COLUMN_NAME, nom);
-        values.put(COLUMN_PASS, mdp);
-        db.insert(TABLE_NAME, null, values);
-    }
 
     public void suppTable() {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
@@ -125,8 +124,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * Created by user on 10/11/2017.
-     */
+   */
 
 }

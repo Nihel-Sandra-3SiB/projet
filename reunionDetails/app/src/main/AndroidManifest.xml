@@ -33,6 +33,26 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="android.projet.reuniondetails.MainActivity" /></activity>
+
+        <activity android:name=".inscription"
+            android:label="@string/title_activity_inscription"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.projet.reuniondetails.MainActivity" /></activity>
+
+        <activity android:name=".local"
+            android:label="@string/title_activity_local"
+            android:parentActivityName=".detail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.projet.reuniondetails.detail" /></activity>
+        <activity android:name=".externe"
+            android:label="@string/title_activity_externe"
+            android:parentActivityName=".detail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.projet.reuniondetails.detail" /></activity>
     </application>
 
 </manifest>

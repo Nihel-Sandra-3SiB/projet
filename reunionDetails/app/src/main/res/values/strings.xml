@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">reunionDetails</string>
-     <string name="title_activity_detail">Information</string>
+    <string name="app_name">Connexion</string>
+     <string name="title_activity_detail">reunionDetails</string>
+    <string name="title_activity_inscription">Inscription</string>
+    <string name="title_activity_local">réunionLocal</string>
+    <string name="title_activity_externe">reunionExterne</string>
 </resources>

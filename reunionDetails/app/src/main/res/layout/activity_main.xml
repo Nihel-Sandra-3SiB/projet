@@ -17,11 +17,15 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <!-- Here you can put your logo or brand name -->
 
@@ -33,13 +37,15 @@
                 android:padding="16dp"
                 android:layout_marginTop="48dp"
                 android:layout_marginBottom="20dp"
-                android:src="@drawable/ic_directions_bike_black_24dp"/>
+                android:src="@drawable/user"/>
+
+
 
             <EditText
                 android:id="@+id/editText1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textPersonName"
                 android:ems="10"
                 android:background="@android:color/transparent"
                 android:drawablePadding="12dp"
@@ -91,15 +97,16 @@
 
             <TextView
                 android:id="@+id/text1"
-                android:layout_width="wrap_content"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
-                android:text="cliquer ici si vous êtes un nouveau utilisateur"
+                android:text="sign up"
                 style="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#fff"
                 android:padding="16dp"
                 android:onClick="onTextClick"
                 android:clickable="true"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="16dp"
+                android:layout_weight="0.20" />
 
         </LinearLayout>
     </ScrollView>
